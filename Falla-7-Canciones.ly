@@ -11,9 +11,13 @@
 {
   title = "Siete Canciones Populares Españolas"
   composer = "Manuel de Falla (1876-1946)"
-  tagline = "https://bitbucket.org/daemonblade/falla-7-canciones-populares"
+  arranger = "Pawel Kochanski (1887-1934)"
+  tagline = "https://github.com/daemonblade/falla-7-canciones-populares"
 }
 
+%
+% pa : 1. El Paño Moruno
+%
 pa_begin =
 {
   \tempo "Allegretto vivace" 4. = 72
@@ -41,6 +45,10 @@ pa_violin = \new Voice \relative c''
   cis r b
   ais <ais^1 fis'-2 cis'>\p g-+
   \repeat unfold 3 { ais <ais fis' cis'> g-+ }
+  <ais fis' a!> ais-+ r
+  <ais fis' a> ais-+ r
+  <ais fis' a> ais-+ r
+  r r fis'
 }
 
 pa_piano_upper = \relative c''
@@ -138,6 +146,19 @@ pa_piano_upper = \relative c''
         }
     }
   >>
+  \clef treble
+  \repeat unfold 3
+    {
+      r \tuplet 3/2 { a'!16 e ais, }
+        \change Staff = "lower"
+        \clef treble
+        \override Stem.direction = #UP
+        <fis g d'>8
+        \clef bass
+        \change Staff = "upper"
+        \revert Stem.direction
+    }
+  s8 \stemUp <fis' a d fis>\arpeggio \stemNeutral r
 }
 
 pa_piano_lower = \relative c
@@ -212,6 +233,10 @@ pa_piano_lower = \relative c
   e, fis g
   fis4 g'8
   \repeat unfold 3 { fis,4 g'8 }
+  fis,4\< s8
+  fis4 s8
+  fis4 s8\!
+  fis <fis' g! ais d e>\arpeggio r
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -231,6 +256,7 @@ pa_piano_lower = \relative c
       \new PianoStaff
       <<
         \set PianoStaff.instrumentName = #"Piano "
+        \set PianoStaff.connectArpeggios = ##t
         \new Staff = "upper" << \pa_begin \pa_piano_upper >>
         \new Staff = "lower" << \pa_begin \pa_piano_lower >>
       >>
