@@ -2,7 +2,7 @@
 % Siete Canciones Populares Españolas
 %
 % copyright: 2016 Jonathan Chen
-% source: https://bitbucket.org/daemonblade/falla-7-canciones-populares
+% source: https://github.com/daemonblade/falla-7-canciones-populares
 % style: indent 2 spaces, 80 cols, 1 bar/line
 %
 \version "2.18.2"
@@ -49,6 +49,12 @@ pa_violin = \new Voice \relative c''
   <ais fis' a> ais-+ r
   <ais fis' a> ais-+ r
   r r fis'
+  b4 b8
+  ais b cis
+  d cis16 b ais8 ~
+  ais4 fis8
+  b4 b8
+  cis e cis
 }
 
 pa_piano_upper = \relative c''
@@ -159,6 +165,40 @@ pa_piano_upper = \relative c''
         \revert Stem.direction
     }
   s8 \stemUp <fis' a d fis>\arpeggio \stemNeutral r
+  \clef bass
+  <<
+    {
+      s fis8 s
+    } \\
+    {
+      s \tuplet 5/2 { fis16[ d b g
+        \change Staff = "lower"
+        \override Stem.direction = #UP
+        a! } fis8]
+        \change Staff = "upper"
+        \revert Stem.direction
+    }
+  >>
+  \clef treble
+  r <fis ais e' fis>\arpeggio r
+  \clef bass
+  <<
+    {
+      s fis'8 s
+    } \\
+    {
+      s fis32[ d b g
+        \change Staff = "lower"
+        \override Stem.direction = #UP
+        fis8]
+        \change Staff = "upper"
+        \revert Stem.direction
+    }
+  >>
+  \clef treble
+  r <fis ais e' fis>\arpeggio r
+  r <fis b d fis>\arpeggio r
+  r <a cis e a>\arpeggio r
 }
 
 pa_piano_lower = \relative c
@@ -237,6 +277,14 @@ pa_piano_lower = \relative c
   fis4 s8
   fis4 s8\!
   fis <fis' g! ais d e>\arpeggio r
+  b,, s s
+  \autoBeamOff
+  cis g''\arpeggio r
+  b,, s s
+  cis g''\arpeggio r
+  \autoBeamOn
+  b,, r fis'
+  a, r e'
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
